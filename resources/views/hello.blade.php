@@ -1,6 +1,9 @@
-<html>
-<body>
-	<h1>Hola {{ $name }}</h1>
+<x-layout>
+  <x-slot name="title">
+    Saludos
+  </x-slot>
+
+  <h1>Hola {{ $name }}</h1>
   <p>Mi edad es {{ $age }}</p>
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, adipisci esse labore, vel nisi unde culpa, amet saepe accusantium corrupti natus. Ipsam facere ducimus consequatur odit quaerat nemo perferendis beatae?</p>
 
@@ -17,7 +20,7 @@
   @auth
     <p>The user is authenticated...</p>
   @endauth
-   
+
   @guest
     <p>The user is not authenticated...</p>
   @endguest
@@ -25,5 +28,4 @@
   @for ($i = 0; $i < 10; $i++)
     <p>The current value is {{ $i }}</p>
   @endfor
-</body>
-</html>
+</x-layout>
