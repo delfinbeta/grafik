@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Survey;
+
 Route::get('/', function () {
     // return view('welcome');
     return redirect()->route('login');
@@ -17,6 +19,9 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $surveys = Survey::all();
+        // $surveys = Survey::where('start', '>=', '2024-09-01')->get();
+        $survey = Survey::find(1);
+        return view('dashboard')->with('surveys', $surveys)->with('survey', $survey);
     })->name('dashboard');
 });
