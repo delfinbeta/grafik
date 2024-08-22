@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('options', function (Blueprint $table) {
             $table->id();
-
-            // $table->bigInteger('survey_id')->unsigned();
-            // $table->foreign('survey_id')->references('id')->on('surveys');
-            $table->foreignId('survey_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-
-            $table->integer('type')->default(1);
+            $table->foreignId('question_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
             $table->timestamps();
             $table->softDeletes();
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('options');
     }
 };
