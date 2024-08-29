@@ -6,8 +6,10 @@
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="p-4 bg-white overflow-hidden shadow-xl sm:rounded-lg">
-        <p>Listado de Encuestas</p>
-
+        <h2 class="font-bold text-xl">Listado de Encuestas</h2>
+        <p class="text-right">
+          <a href="{{ route('admin.surveys.create') }}" class="mb-4 p-2 rounded-md bg-blue-500 hover:bg-blue-600 text-white inline-block">Nueva Encuesta</a>
+        </p>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-blue-200 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -15,6 +17,7 @@
               <th scope="col" class="px-4 py-3">Título</th>
               <th scope="col" class="px-4 py-3">Inicio</th>
               <th scope="col" class="px-4 py-3">Fin</th>
+              <th scope="col" class="px-4 py-3">Preguntas</th>
               <th scope="col" class="px-4 py-3">
                   <span class="sr-only">Actions</span>
               </th>
@@ -23,14 +26,22 @@
           <tbody>
             @foreach ($surveys as $survey)
               <tr class="border-b dark:border-gray-700">
-                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  <a href="{{ route('admin.detalle', $survey) }}" class="font-bold text-blue-700 underline">{{ $survey->id }}</a>
-                </th>
+                <td scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  <a href="{{ route('admin.surveys.show', $survey) }}" class="font-bold text-blue-700 underline">{{ $survey->id }}</a>
+                </td>
                 <td class="px-4 py-3">{{ $survey->title }}</td>
                 <td class="px-4 py-3">{{ $survey->start->format('d/m/Y') }}</td>
                 <td class="px-4 py-3">{{ $survey->end->format('d/m/Y') }}</td>
+                <td class="px-4 py-3">
+                  <a href="{{ route('admin.surveys.questions.index', $survey) }}" class="font-bold text-blue-700 underline">Ver Preguntas</a>
+                </td>
                 <td class="px-4 py-3 flex items-center justify-end">
-                  botones
+                  <a href="{{ route('admin.surveys.edit', $survey->id) }}" class="mx-4 p-2 rounded-md bg-blue-500 hover:bg-blue-600 text-white">Editar</a>
+                  <form action="{{ route('admin.surveys.destroy', $survey) }}" method="post" class="inline">
+                    @csrf 
+                    @method('delete')
+                    <button type="submit" class="p-2 rounded-md bg-red-500 hover:bg-red-600 text-white">Eliminar</button>
+                  </form>
                 </td>
               </tr>
             @endforeach
