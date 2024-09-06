@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Surveys\StoreSurveyRequest;
+use App\Http\Requests\Surveys\UpdateSurveyRequest;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -29,7 +31,7 @@ class SurveyController extends Controller
   /**
    * Store a newly created resource in storage.
    */
-  public function store(Request $request)
+  public function store(StoreSurveyRequest $request)
   {
     // $survey = new Survey;
 
@@ -38,12 +40,20 @@ class SurveyController extends Controller
     // $survey->end = '2024-09-20';
 
     // $survey->save();
+    // $data = $request->validate([
+    //   'title' => 'required|string',
+    //   'description' => 'nullable|string',
+    //   'start' => 'required|date',
+    //   'end' => 'required|date'
+    // ]);
+
+    $data = $request->validated();
 
     $survey = Survey::create([
-      'title' => $request->title,
-      'description' => $request->description,
-      'start' => $request->start,
-      'end' => $request->end
+      'title' => $data['title'],
+      'description' => $data['description'],
+      'start' => $data['start'],
+      'end' => $data['end']
     ]);
 
     return redirect()->route('admin.surveys.index');
@@ -70,7 +80,7 @@ class SurveyController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, Survey $survey)
+  public function update(UpdateSurveyRequest $request, Survey $survey)
   {
     // $survey = Survey::find($id);
 
@@ -78,11 +88,20 @@ class SurveyController extends Controller
 
     // $survey->save();
 
+    // $data = $request->validate([
+    //   'title' => 'required|string',
+    //   'description' => 'nullable|string',
+    //   'start' => 'required|date',
+    //   'end' => 'required|date'
+    // ]);
+
+    $data = $request->validated();
+
     $survey->update([
-      'title' => $request->title,
-      'description' => $request->description,
-      'start' => $request->start,
-      'end' => $request->end
+      'title' => $data['title'],
+      'description' => $data['description'],
+      'start' => $data['start'],
+      'end' => $data['end']
     ]);
 
     return redirect()->route('admin.surveys.index');

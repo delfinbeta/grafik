@@ -8,12 +8,22 @@
       <div class="p-4 bg-white overflow-hidden shadow-xl sm:rounded-lg">
         <h2 class="font-bold text-xl">Editar Encuesta</h2>
 
+        @if ($errors->any())
+          <div class="p-4 font-medium text-sm bg-red-300 text-red-600">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+
         <form action="{{ route('admin.surveys.update', $survey) }}" method="post">
           @csrf
           @method('PUT')
           <div class="relative w-full my-4">
             <label class="block w-full font-bold" for="title">Título</label>
-            <input type="text" name="title" id="title" value="{{ $survey->title }}" required />
+            <input type="text" name="title" id="title" value="{{ $survey->title }}" />
           </div>
           <div class="relative w-full my-4">
             <label class="block w-full font-bold" for="description">Descripción</label>
