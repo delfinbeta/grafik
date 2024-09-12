@@ -16,9 +16,10 @@ class QuestionController extends Controller
    */
   public function index(Survey $survey): View
   {
-    $questions = Question::where('survey_id', $survey->id)->get();
+    // $questions = Question::where('survey_id', $survey->id)->get();
 
-    return view('admin.questions.index')->with('survey', $survey)->with('questions', $questions);
+    // return view('admin.questions.index')->with('survey', $survey)->with('questions', $questions);
+    return view('admin.questions.index')->with('survey', $survey);
   }
 
   /**

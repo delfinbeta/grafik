@@ -11,7 +11,7 @@
         <p class="text-right">
           <a href="{{ route('admin.surveys.questions.create', $survey) }}" class="mb-4 p-2 rounded-md bg-blue-500 hover:bg-blue-600 text-white inline-block">Nueva Pregunta</a>
         </p>
-        @if ($questions->isNotEmpty())
+        @if ($survey->questions->isNotEmpty())
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-blue-200 dark:bg-gray-700 dark:text-gray-400">
               <tr>
@@ -24,7 +24,7 @@
               </tr>
             </thead>
             <tbody>
-              @foreach ($questions as $question)
+              @foreach ($survey->questions as $question)
                 <tr class="border-b dark:border-gray-700">
                   <td scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     <a href="{{ route('admin.questions.show', $question) }}" class="font-bold text-blue-700 underline">{{ $question->id }}</a>

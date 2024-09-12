@@ -15,7 +15,7 @@
           </tr>
           <tr class="border">
             <th class="px-4 py-2 font-bold bg-blue-200">Encuesta:</th>
-            <td class="px-4 py-2">{{ $question->survey_id }}</td>
+            <td class="px-4 py-2">{{ $question->survey->title }}</td>
           </tr>
           <tr class="border">
             <th class="px-4 py-2 font-bold bg-blue-200">Título:</th>
