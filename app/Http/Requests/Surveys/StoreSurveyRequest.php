@@ -25,7 +25,8 @@ class StoreSurveyRequest extends FormRequest
       'title' => 'required|string',
       'description' => 'nullable|string',
       'start' => 'required|date',
-      'end' => 'required|date'
+      'end' => 'required|date',
+      'image' => 'nullable|image'
     ];
   }
 
@@ -39,7 +40,8 @@ class StoreSurveyRequest extends FormRequest
       'title.string' => 'El título debe ser una cadena de caracteres',
       'description.string' => 'La descripción debe ser una cadena de caracteres',
       'start.required' => 'La Fecha de inicio es obligatoria',
-      'end.required' => 'La fecha fin es obligatoria'
+      'end.required' => 'La fecha fin es obligatoria',
+      'image.image' => 'El archivo debe ser de tipo imagen (jpg, png)'
     ];
   }
 }

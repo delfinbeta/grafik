@@ -17,7 +17,7 @@ class Survey extends Model
    *
    * @var array
    */
-  protected $fillable = ['title', 'description', 'start', 'end'];
+  protected $fillable = ['title', 'description', 'start', 'end', 'image'];
 
   /**
    * Get the attributes that should be cast.

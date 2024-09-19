@@ -18,7 +18,7 @@
           </div>
         @endif
 
-        <form action="{{ route('admin.surveys.update', $survey) }}" method="post">
+        <form action="{{ route('admin.surveys.update', $survey) }}" method="post" enctype="multipart/form-data">
           @csrf
           @method('PUT')
           <div class="relative w-full my-4">
@@ -36,6 +36,10 @@
           <div class="relative w-full my-4">
             <label class="block w-full font-bold" for="end">Fecha Fin</label>
             <input type="date" name="end" id="end" value="{{ $survey->end->format('Y-m-d') }}" required />
+          </div>
+          <div class="relative w-full my-4">
+            <label class="block w-full font-bold" for="image">Imagen</label>
+            <input type="file" name="image" id="image" />
           </div>
           <div class="relative w-full my-4">
             <button type="submit" class="p-2 rounded-md bg-blue-500 hover:bg-blue-600 text-white inline-block">Guardar</button>

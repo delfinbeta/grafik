@@ -18,7 +18,7 @@
           </div>
         @endif
 
-        <form action="{{ route('admin.surveys.store') }}" method="post">
+        <form action="{{ route('admin.surveys.store') }}" method="post" enctype="multipart/form-data">
           @csrf
           <div class="relative w-full my-4">
             <label class="block w-full font-bold" for="title">Título</label>
@@ -45,6 +45,13 @@
             <label class="block w-full font-bold" for="end">Fecha Fin</label>
             <input type="date" name="end" id="end" value="{{ old('end') }}" required />
             @error('end')
+              <div class="text-sm bg-red-300 text-red-600">{{ $message }}</div>
+            @enderror
+          </div>
+          <div class="relative w-full my-4">
+            <label class="block w-full font-bold" for="image">Imagen</label>
+            <input type="file" name="image" id="image" />
+            @error('image')
               <div class="text-sm bg-red-300 text-red-600">{{ $message }}</div>
             @enderror
           </div>

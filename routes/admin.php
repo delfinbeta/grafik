@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Models\Survey;
 
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\QuestionController;
 
@@ -15,7 +16,10 @@ use App\Http\Controllers\QuestionController;
 // Route::put('/actualizar/{survey}', [SurveyController::class, 'actualizar'])->name('actualizar');
 // Route::delete('/eliminar/{survey}', [SurveyController::class, 'eliminar'])->name('eliminar');
 
-Route::resource('surveys', SurveyController::class);
+Route::resources([
+  'types' => TypeController::class,
+  'surveys' => SurveyController::class
+]);
 
 Route::resource('surveys.questions', QuestionController::class)->shallow();
 

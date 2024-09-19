@@ -7,6 +7,7 @@ use App\Http\Requests\Surveys\UpdateSurveyRequest;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class SurveyController extends Controller
 {
@@ -49,11 +50,23 @@ class SurveyController extends Controller
 
     $data = $request->validated();
 
+    if($request->hasFile('image')) {
+      $fileImage = $request->file('image');
+      $path = $fileImage->path();
+      $extension = $fileImage->extension();
+      $imageName = $fileImage->getClientOriginalName();
+
+      Storage::putFileAs('surveys', $fileImage, $imageName);
+    } else {
+      $imageName = null;
+    }
+
     $survey = Survey::create([
       'title' => $data['title'],
       'description' => $data['description'],
       'start' => $data['start'],
-      'end' => $data['end']
+      'end' => $data['end'],
+      'image' => $imageName
     ]);
 
     return redirect()->route('admin.surveys.index');
