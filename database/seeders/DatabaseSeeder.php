@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            TypeSeeder::class,
             UserSeeder::class,
             SurveySeeder::class
         ]);

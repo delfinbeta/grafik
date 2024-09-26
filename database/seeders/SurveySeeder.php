@@ -14,18 +14,21 @@ class SurveySeeder extends Seeder
     public function run(): void
     {
         DB::table('surveys')->insert([
+            'type_id' => 1,
             'title' => 'Encuesta 1',
             'start' => '2024-08-01',
             'end' => '2024-08-15'
         ]);
 
         DB::table('surveys')->insert([
+            'type_id' => 1,
             'title' => 'Encuesta 2',
             'start' => '2024-09-01',
             'end' => '2024-09-30'
         ]);
 
         DB::table('surveys')->insert([
+            'type_id' => 2,
             'title' => 'Encuesta 3',
             'start' => '2024-12-10',
             'end' => '2024-12-20'

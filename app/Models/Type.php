@@ -26,4 +26,12 @@ class Type extends Model
   {
     return $this->hasMany(User::class);
   }
+
+  /**
+   * Get the surveys for the survey.
+   */
+  public function surveys(): HasMany
+  {
+    return $this->hasMany(Survey::class);
+  }
 }

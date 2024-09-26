@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('type_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
             $table->string('description')->nullable();
             $table->date('start');

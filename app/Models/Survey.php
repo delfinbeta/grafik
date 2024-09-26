@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,7 +18,7 @@ class Survey extends Model
    *
    * @var array
    */
-  protected $fillable = ['title', 'description', 'start', 'end', 'image'];
+  protected $fillable = ['type_id', 'title', 'description', 'start', 'end', 'image'];
 
   /**
    * Get the attributes that should be cast.
@@ -38,5 +39,13 @@ class Survey extends Model
   public function questions(): HasMany
   {
     return $this->hasMany(Question::class);
+  }
+
+  /**
+   * Get the type that owns the post.
+   */
+  public function type(): BelongsTo
+  {
+      return $this->belongsTo(Type::class);
   }
 }

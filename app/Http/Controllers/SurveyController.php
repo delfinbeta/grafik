@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Surveys\StoreSurveyRequest;
 use App\Http\Requests\Surveys\UpdateSurveyRequest;
 use App\Models\Survey;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
@@ -26,7 +27,9 @@ class SurveyController extends Controller
    */
   public function create(): View
   {
-    return view('admin.surveys.create');
+    $types = Type::all();
+
+    return view('admin.surveys.create')->with('types', $types);
   }
 
   /**
@@ -62,6 +65,7 @@ class SurveyController extends Controller
     }
 
     $survey = Survey::create([
+      'type_id' => $data['type_id'],
       'title' => $data['title'],
       'description' => $data['description'],
       'start' => $data['start'],
@@ -87,7 +91,9 @@ class SurveyController extends Controller
    */
   public function edit(Survey $survey): View
   {
-    return view('admin.surveys.edit')->with('survey', $survey);
+    $types = Type::all();
+
+    return view('admin.surveys.edit')->with('survey', $survey)->with('types', $types);
   }
 
   /**
@@ -111,10 +117,28 @@ class SurveyController extends Controller
     $data = $request->validated();
 
     $survey->update([
+      'type_id' => $data['type_id'],
       'title' => $data['title'],
       'description' => $data['description'],
       'start' => $data['start'],
       'end' => $data['end']
+    ]);
+
+    return redirect()->route('admin.surveys.index');
+  }
+
+  /**
+   * Clone
+   */
+  public function clone(Survey $survey)
+  {
+    $survey2 = Survey::create([
+      'type_id' => $survey->type_id,
+      'title' => $survey->title,
+      'description' => $survey->description,
+      'start' => $survey->start,
+      'end' => $survey->end,
+      'image' => $survey->image
     ]);
 
     return redirect()->route('admin.surveys.index');

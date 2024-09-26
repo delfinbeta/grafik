@@ -18,7 +18,7 @@
               <th scope="col" class="px-4 py-3">Título</th>
               <th scope="col" class="px-4 py-3">Inicio</th>
               <th scope="col" class="px-4 py-3">Fin</th>
-              <th scope="col" class="px-4 py-3">Preguntas</th>
+              <th scope="col" class="px-4 py-3">Tipo</th>
               <th scope="col" class="px-4 py-3">
                   <span class="sr-only">Actions</span>
               </th>
@@ -38,11 +38,10 @@
                 <td class="px-4 py-3">{{ $survey->title }}</td>
                 <td class="px-4 py-3">{{ $survey->start->format('d/m/Y') }}</td>
                 <td class="px-4 py-3">{{ $survey->end->format('d/m/Y') }}</td>
-                <td class="px-4 py-3">
-                  <a href="{{ route('admin.surveys.questions.index', $survey) }}" class="font-bold text-blue-700 underline">Ver Preguntas</a>
-                </td>
+                <td class="px-4 py-3">{{ $survey->type->name }}</td>
                 <td class="px-4 py-3 flex items-center justify-end">
-                  <a href="{{ route('admin.surveys.edit', $survey->id) }}" class="mx-4 p-2 rounded-md bg-blue-500 hover:bg-blue-600 text-white">Editar</a>
+                  <a href="{{ route('admin.surveys.edit', $survey) }}" class="mx-4 p-2 rounded-md bg-blue-500 hover:bg-blue-600 text-white">Editar</a>
+                  <a href="{{ route('admin.surveys.clone', $survey) }}" class="mx-4 p-2 rounded-md bg-blue-500 hover:bg-blue-600 text-white">Duplicar</a>
                   <form action="{{ route('admin.surveys.destroy', $survey) }}" method="post" class="inline">
                     @csrf 
                     @method('delete')

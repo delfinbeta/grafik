@@ -22,6 +22,7 @@ class UpdateSurveyRequest extends FormRequest
   public function rules(): array
   {
     return [
+      'type_id' => 'required|exists:types,id',
       'title' => 'required|string',
       'description' => 'nullable|string',
       'start' => 'required|date',
@@ -36,6 +37,7 @@ class UpdateSurveyRequest extends FormRequest
   public function messages(): array
   {
     return [
+      'type_id' => 'El Tipo es bligatorio',
       'title.required' => 'El título es obligatorio',
       'title.string' => 'El título debe ser una cadena de caracteres',
       'description.string' => 'La descripción debe ser una cadena de caracteres',
