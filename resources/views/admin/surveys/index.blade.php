@@ -14,7 +14,6 @@
           <thead class="text-xs text-gray-700 uppercase bg-blue-200 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="px-4 py-3">ID</th>
-              <th scope="col" class="px-4 py-3">Imagen</th>
               <th scope="col" class="px-4 py-3">Título</th>
               <th scope="col" class="px-4 py-3">Inicio</th>
               <th scope="col" class="px-4 py-3">Fin</th>
@@ -29,11 +28,6 @@
               <tr class="border-b dark:border-gray-700">
                 <td scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   <a href="{{ route('admin.surveys.show', $survey) }}" class="font-bold text-blue-700 underline">{{ $survey->id }}</a>
-                </td>
-                <td class="px-4 py-3">
-                  @if ($survey->image)
-                    <img src="{{ asset('storage/surveys/'.$survey->image) }}" class="w-16" />
-                  @endif
                 </td>
                 <td class="px-4 py-3">{{ $survey->title }}</td>
                 <td class="px-4 py-3">{{ $survey->start->format('d/m/Y') }}</td>

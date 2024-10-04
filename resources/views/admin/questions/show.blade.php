@@ -23,7 +23,7 @@
           </tr>
           <tr class="border">
             <th class="px-4 py-2 font-bold bg-blue-200">Tipo:</th>
-            <td class="px-4 py-2">{{ $question->type }}</td>
+            <td class="px-4 py-2">{{ $question->type_name }}</td>
           </tr>
         </table>
       </div>

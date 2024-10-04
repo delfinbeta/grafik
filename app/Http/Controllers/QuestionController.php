@@ -43,7 +43,7 @@ class QuestionController extends Controller
       'type' => $data['type']
     ]);
 
-    return redirect()->route('admin.surveys.questions.index', $survey);
+    return redirect()->route('admin.surveys.show', $survey);
   }
 
   /**
@@ -74,7 +74,7 @@ class QuestionController extends Controller
       'type' => $data['type']
     ]);
 
-    return redirect()->route('admin.surveys.questions.index', $question->survey_id);
+    return redirect()->route('admin.surveys.show', $question->survey);
   }
 
   /**
@@ -82,10 +82,10 @@ class QuestionController extends Controller
    */
   public function destroy(Question $question)
   {
-    $survey_id = $question->survey_id;
+    $survey = $question->survey;
 
     $question->delete();
 
-    return redirect()->route('admin.surveys.questions.index', $survey_id);
+    return redirect()->route('admin.surveys.show', $survey);
   }
 }

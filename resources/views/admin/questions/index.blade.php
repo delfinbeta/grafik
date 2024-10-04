@@ -30,7 +30,7 @@
                     <a href="{{ route('admin.questions.show', $question) }}" class="font-bold text-blue-700 underline">{{ $question->id }}</a>
                   </td>
                   <td class="px-4 py-3">{{ $question->title }}</td>
-                  <td class="px-4 py-3">{{ $question->type }}</td>
+                  <td class="px-4 py-3">{{ $question->type_name }}</td>
                   <td class="px-4 py-3 flex items-center justify-end">
                     <a href="{{ route('admin.questions.edit', $question) }}" class="mx-4 p-2 rounded-md bg-blue-500 hover:bg-blue-600 text-white">Editar</a>
                     <form action="{{ route('admin.questions.destroy', $question) }}" method="post" class="inline">
