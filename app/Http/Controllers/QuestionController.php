@@ -43,6 +43,12 @@ class QuestionController extends Controller
       'type' => $data['type']
     ]);
 
+    if (($data['type'] == 3) || ($data['type'] == 4)) {
+      foreach ($data['options'] as $option) {
+        $question->options()->create(['title' => $option]);
+      }
+    }
+
     return redirect()->route('admin.surveys.show', $survey);
   }
 
@@ -73,6 +79,13 @@ class QuestionController extends Controller
       'title' => $data['title'],
       'type' => $data['type']
     ]);
+
+    if (($data['type'] == 3) || ($data['type'] == 4)) {
+      $question->options()->delete();
+      foreach ($data['options'] as $option) {
+        $question->options()->create(['title' => $option]);
+      }
+    }
 
     return redirect()->route('admin.surveys.show', $question->survey);
   }

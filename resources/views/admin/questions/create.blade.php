@@ -85,7 +85,7 @@
         let cell1 = row.insertCell();
         let cell2 = row.insertCell();
 
-        cell1.innerHTML = '<button type="button" data-pos="' + i + '" class="btn_delete p-2 rounded-md bg-red-500 hover:bg-red-600 text-white">- Eliminar</button>';
+        cell1.innerHTML = '<button type="button" class="btn_delete p-2 rounded-md bg-red-500 hover:bg-red-600 text-white">- Eliminar</button>';
         cell2.innerHTML = '<input type="text" name="options[]" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />';
 
         i++;

@@ -23,7 +23,8 @@ class StoreQuestionRequest extends FormRequest
   {
     return [
       'title' => 'required|string',
-      'type' => 'required|in:1,2,3,4'
+      'type' => 'required|in:1,2,3,4,5',
+      'options' => 'nullable|array'
     ];
   }
 
