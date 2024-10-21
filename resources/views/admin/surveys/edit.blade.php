@@ -5,7 +5,7 @@
 
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div class="p-4 bg-white overflow-hidden shadow-xl sm:rounded-lg">
+      <div class="p-4 bg-white shadow-xl sm:rounded-lg">
         <h2 class="font-bold text-xl">Editar Encuesta</h2>
 
         @if ($errors->any())
@@ -64,6 +64,16 @@
 
           <fieldset class="my-4 p-4 border border-gray-300 rounded-lg">
             <legend class="p-2 border border-gray-300 rounded">Usuarios Asignados:</legend>
+            <div class="my-4 flex justify-center items-center">
+              @if ($survey->users->isNotEmpty())
+                @foreach ($survey->users as $user)
+                <div class="mx-2 py-2 px-3 font-medium rounded-full text-teal-800 bg-teal-200 border border-teal-300">
+                  <div class="text-xs font-normal leading-none max-w-full flex-initial">{{ $user->firstname }} {{ $user->lastname }}</div>
+                </div>
+                @endforeach
+              @endif
+            </div>
+            <livewire:search-users :type="$survey->type" />
           </fieldset>
 
           <div class="relative w-full my-4">

@@ -124,6 +124,10 @@ class SurveyController extends Controller
       'end' => $data['end']
     ]);
 
+    if (isset($data['users'])) {
+      $survey->users()->sync($data['users']);
+    }
+
     return redirect()->route('admin.surveys.index');
   }
 

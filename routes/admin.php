@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Models\Survey;
 
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TypeController;
@@ -17,6 +18,7 @@ Route::resources([
   'surveys' => SurveyController::class
 ]);
 
+Route::resource('surveys.forms', FormController::class)->shallow();
 Route::resource('surveys.questions', QuestionController::class)->shallow();
 
 Route::get('/recuperar/{id}', function (int $id) {
