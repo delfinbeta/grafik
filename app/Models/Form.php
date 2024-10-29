@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Form extends Model
@@ -17,7 +18,7 @@ class Form extends Model
    *
    * @var array
    */
-  protected $fillable = ['user_id', 'survey_id'];
+  protected $fillable = ['user_id', 'survey_id', 'person'];
 
   /**
    * Get the user that owns the form.
@@ -33,5 +34,13 @@ class Form extends Model
   public function survey(): BelongsTo
   {
     return $this->belongsTo(Survey::class);
+  }
+
+  /**
+   * Get the answers for the form.
+   */
+  public function answers(): HasMany
+  {
+      return $this->hasMany(Answer::class);
   }
 }

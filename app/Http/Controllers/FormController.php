@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Form;
+use App\Models\Question;
 use App\Models\Survey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class FormController extends Controller
@@ -30,9 +32,35 @@ class FormController extends Controller
   /**
    * Store a newly created resource in storage.
    */
-  public function store(Request $request)
+  public function store(Request $request, Survey $survey)
   {
-      //
+    $user_id = Auth::user()->id;
+
+    $form = Form::create([
+      'user_id' => $user_id,
+      'survey_id' => $survey->id,
+      'person' => $request->person
+    ]);
+
+    foreach ($request->answers as $key => $value) {
+      $content = $value;
+      $question = Question::find($key);
+
+      if ($question && ($question->type == 4)) {
+        $content = '';
+        foreach ($value as $item) {
+          $content .= $item.'-';
+        }
+        $content = substr($content, 0, -1);
+      }
+
+      $form->answers()->create([
+        'question_id' => $question->id,
+        'content' => $content
+      ]);
+    }
+
+    return redirect()->route('dashboard');
   }
 
   /**

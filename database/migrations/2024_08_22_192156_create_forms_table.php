@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('survey_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('person');
             $table->timestamps();
             $table->softDeletes();
         });
