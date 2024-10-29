@@ -7,9 +7,13 @@ use App\Models\Survey;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 
+Route::get('/statistics', [StatisticsController::class, 'index'])->name('statistics.index');
+
+Route::get('/forms/excel', [FormController::class, 'excel'])->name('forms.excel');
 Route::get('/forms/{form}', [FormController::class, 'show'])->name('forms.show');
 Route::get('/forms', [FormController::class, 'index'])->name('forms.index');
 

@@ -57,4 +57,12 @@ class Survey extends Model
   {
     return $this->belongsToMany(User::class);
   }
+
+  /**
+   * Get the forms for the survey.
+   */
+  public function forms(): HasMany
+  {
+    return $this->hasMany(Form::class);
+  }
 }

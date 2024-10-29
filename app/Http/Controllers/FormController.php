@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AnswerExport;
 use App\Models\Form;
 use App\Models\Question;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FormController extends Controller
 {
@@ -93,5 +95,13 @@ class FormController extends Controller
   public function destroy(Form $form)
   {
       //
+  }
+
+  /**
+   * Excel Export
+   */
+  public function excel() 
+  {
+    return Excel::download(new AnswerExport, 'formularios.xlsx');
   }
 }

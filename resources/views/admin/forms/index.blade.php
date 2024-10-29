@@ -7,6 +7,9 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="p-4 bg-white overflow-hidden shadow-xl sm:rounded-lg">
         <h2 class="font-bold text-xl">Listado de Formularios</h2>
+        <p class="text-right">
+          <a href="{{ route('admin.forms.excel') }}" class="mb-4 p-2 rounded-md bg-green-500 hover:bg-blue-600 text-white inline-block">Descargar Excel</a>
+        </p>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-blue-200 dark:bg-gray-700 dark:text-gray-400">
             <tr>
