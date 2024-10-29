@@ -15,7 +15,7 @@
         <ul class="mt-2 max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
           @foreach ($user->surveys as $survey)
             <li>
-              <a href="{{ route('admin.surveys.forms.create', $survey) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+              <a href="{{ route('admin.forms.create', $survey) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                 {{ $survey->title }}
               </a>
             </li>

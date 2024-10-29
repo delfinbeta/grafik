@@ -16,9 +16,9 @@ class FormController extends Controller
    */
   public function index(): View
   {
-    $surveys = Survey::all();
+    $forms = Form::with('user', 'survey')->paginate();
 
-    return view('admin.forms.index')->with('surveys', $surveys);
+    return view('admin.forms.index')->with('forms', $forms);
   }
 
   /**
@@ -60,7 +60,7 @@ class FormController extends Controller
       ]);
     }
 
-    return redirect()->route('dashboard');
+    return redirect()->route('admin.forms.index');
   }
 
   /**
@@ -68,7 +68,7 @@ class FormController extends Controller
    */
   public function show(Form $form)
   {
-      //
+    return view('admin.forms.show')->with('form', $form);
   }
 
   /**

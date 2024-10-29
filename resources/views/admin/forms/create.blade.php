@@ -8,7 +8,7 @@
       <div class="p-4 bg-white overflow-hidden shadow-xl sm:rounded-lg">
         <h2 class="font-bold text-xl">{{ $survey->title }}</h2>
 
-        <form action="{{ route('admin.surveys.forms.store', $survey) }}" method="post">
+        <form action="{{ route('admin.forms.store', $survey) }}" method="post">
           @csrf
 
           <div class="my-4 relative">

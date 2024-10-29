@@ -10,6 +10,12 @@ use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 
+Route::get('/forms/{form}', [FormController::class, 'show'])->name('forms.show');
+Route::get('/forms', [FormController::class, 'index'])->name('forms.index');
+
+Route::post('/surveys/{survey}/forms', [FormController::class, 'store'])->name('forms.store');
+Route::get('/surveys/{survey}/forms/create', [FormController::class, 'create'])->name('forms.create');
+
 Route::get('/surveys/clone/{survey}', [SurveyController::class, 'clone'])->name('surveys.clone');
 
 Route::resources([
@@ -18,7 +24,6 @@ Route::resources([
   'surveys' => SurveyController::class
 ]);
 
-Route::resource('surveys.forms', FormController::class)->shallow();
 Route::resource('surveys.questions', QuestionController::class)->shallow();
 
 Route::get('/recuperar/{id}', function (int $id) {
